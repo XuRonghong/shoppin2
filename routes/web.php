@@ -31,4 +31,5 @@ Route::get('group', 'GroupController@index')->name('group.index');
 Route::get('group/list', 'GroupController@list')->name('group.list');
 Route::post('group', 'GroupController@store')->name('group.store');
 Route::get('group/edit', 'GroupController@edit')->name('group.edit');
-Route::get('group/destroy', 'GroupController@destroy')->name('group.delete');
+Route::get('group/destroy', 'GroupController@destroy')->name('group.destroy');
+Route::delete('group/mass_destroy', 'GroupController@massDestroy')->name('group.mass_destroy');

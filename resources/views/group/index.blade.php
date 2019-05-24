@@ -1,20 +1,26 @@
 @extends('layout.master')
 
 @section('content')
+
     <div class="container">
-        <br />
+        <br/>
         <h3 align="center">Datatables Server Side Processing in Laravel</h3>
-        <br />
+        <br/>
         <div align="right">
             <button type="button" name="add" id="add_data" class="btn btn-success btn-sm">Add</button>
         </div>
-        <br />
+        <br/>
         <table id="group_table" class="table table-bordered" style="width:100%">
             <thead>
             <tr>
                 <th>First Name</th>
                 <th>Last Name</th>
                 <th>Action</th>
+                <th>
+                    <button type="button" name="bulk_delete" id="bulk_delete" class="btn btn-danger btn-xs">
+                        <i class="glyphicon glyphicon-remove"></i>
+                    </button>
+                </th>
             </tr>
             </thead>
         </table>
@@ -65,7 +71,8 @@
                 "columns": [
                     {"data": "name"},
                     {"data": "type"},
-                    { "data": "action", orderable:false, searchable: false}
+                    { "data": "action", orderable:false, searchable: false},
+                    { "data":"checkbox", orderable:false, searchable:false}
                 ]
             });
 
@@ -136,7 +143,7 @@
                 if(confirm("Are you sure you want to Delete this data?"))
                 {
                     $.ajax({
-                        url:"{{route('group.delete')}}",
+                        url:"{{route('group.destroy')}}",
                         mehtod:"get",
                         data:{id:id},
                         success:function(data)
@@ -151,6 +158,34 @@
                     return false;
                 }
             });
+
+            $(document).on('click', '#bulk_delete', function(){
+                var id = [];
+                if(confirm("Are you sure you want to Delete this data?"))
+                {
+                    $('.group_checkbox:checked').each(function(){
+                        id.push($(this).val());
+                    });
+                    if(id.length > 0)
+                    {
+                        $.ajax({
+                            url:"{{ route('group.mass_destroy')}}",
+                            method:"delete",
+                            data:{id:id},
+                            success:function(data)
+                            {
+                                alert(data);
+                                $('#group_table').DataTable().ajax.reload();
+                            }
+                        });
+                    }
+                    else
+                    {
+                        alert("Please select atleast one checkbox");
+                    }
+                }
+            });
+
 
         });
     </script>

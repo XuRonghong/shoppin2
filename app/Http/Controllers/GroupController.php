@@ -29,6 +29,8 @@ class GroupController extends Controller
                             <i class="glyphicon glyphicon-remove"></i> Delete
                         </a>';
             })
+            ->addColumn('checkbox', '<input type="checkbox" name="group_checkbox[]" class="group_checkbox" value="{{$id}}" />')
+            ->rawColumns(['action', 'checkbox'])
             ->make(true);
     }
 
@@ -95,6 +97,16 @@ class GroupController extends Controller
     {
         $group = Group::find($request->input('id'));
         if($group->delete())
+        {
+            echo 'Data Deleted';
+        }
+    }
+
+    function massDestroy(Request $request)
+    {
+        $group_id_array = $request->input('id');
+        $groups = Group::whereIn('id', $group_id_array);
+        if($groups->delete())
         {
             echo 'Data Deleted';
         }
