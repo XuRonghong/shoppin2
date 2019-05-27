@@ -140,12 +140,15 @@
 
             $(document).on('click', '.delete', function(){
                 var id = $(this).attr('id');
+                var data = {"_token": "{{ csrf_token() }}"};
+                data.id = id;
+                data._method = 'DELETE';
                 if(confirm("Are you sure you want to Delete this data?"))
                 {
                     $.ajax({
                         url:"{{route('group.destroy')}}",
                         mehtod:"get",
-                        data:{id:id},
+                        data: data,
                         success:function(data)
                         {
                             alert(data);

@@ -9,6 +9,16 @@ use Validator;
 
 class GroupController extends Controller
 {
+
+    protected $GroupService = [];
+
+
+    function __construct()
+    {
+//        $this->GroupService = $g;
+    }
+
+
     //
     function index()
     {
