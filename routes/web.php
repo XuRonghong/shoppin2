@@ -71,6 +71,7 @@ Route::post('autocomplete/fetch', 'AjaxController@AutoCompleteFetch')->name('aut
 
 Route::get('/export_excel', 'ExportController@index');
 Route::get('/export_excel/excel', 'ExportController@excel')->name('export_excel.excel');
+Route::post('/import_excel/import', 'ExportController@import')->name('import_excel.import');
 
 Route::get('/dynamic_pdf/pdf', 'ProductController@pdf');
 
@@ -92,3 +93,13 @@ Route::post('/livetable/delete_data', 'LiveTable@delete_data')->name('livetable.
 Route::get('/loadmore', 'ArticleController@index');
 Route::post('/loadmore/load_data', 'ArticleController@load_data')->name('loadmore.load_data');
 
+
+
+Route::resource('store', 'StoreController');
+Route::post('store/update', 'StoreController@update')->name('store.update');
+Route::get('store/destroy/{id}', 'StoreController@destroy');
+
+
+
+Route::get('message', 'MessageController@index')->name('message.index');
+Route::post('message/insert', 'MessageController@insert')->name('message.insert');
