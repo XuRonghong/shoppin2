@@ -25,9 +25,9 @@ Auth::routes();
 
 
 //Route::get('login', 'LoginController@index')->name('login.index');
-Route::post('login/checklogin', 'LoginController@checklogin')->name('login.check');
-Route::get('login/successlogin', 'LoginController@successlogin')->name('login.success');
-Route::get('login/logout', 'LoginController@logout')->name('logout');
+//Route::post('login/checklogin', 'LoginController@checklogin')->name('login.check');
+//Route::get('login/successlogin', 'LoginController@successlogin')->name('login.success');
+//Route::get('login/logout', 'LoginController@logout')->name('logout');
 
 //Route::get('/register', 'LoginController@registerView');
 Route::post('register/check', 'LoginController@registerCheck')->name('register.check');
