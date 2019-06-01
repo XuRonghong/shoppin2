@@ -11,16 +11,28 @@
 |
 */
 
-Route::get('/', function () {
-//    return view('welcome');
-    return view('index');
+Route::get('/', 'IndexController@index')->name('index');
+
+Route::get('home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+
+
+
+Route::get('test_phone', function () {
+
+    $user = \App\User::query()->first();
+    $user->phone()->create([
+        'phone' =>  '424-2424-242424'
+    ]);
+
 });
 
 
-Route::get('/home', 'HomeController@index')->name('home');
 
 
-Auth::routes();
+
 
 
 

@@ -1,4 +1,4 @@
-@extends('layout.master')
+@extends('layouts2.master')
 
 @section('content')
 
@@ -9,7 +9,7 @@
         <!-- ============================================================== -->
         <!-- Bread crumb and right sidebar toggle -->
         <!-- ============================================================== -->
-    @include('layout.breadcrumb')
+    @include('layouts2.breadcrumb')
     <!-- ============================================================== -->
         <!-- End Bread crumb and right sidebar toggle -->
         <!-- ============================================================== -->

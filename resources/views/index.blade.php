@@ -1,137 +1,130 @@
-@extends('layout.master')
+@extends('layouts.master')
+
+@section('title')
+	<title>{{ data_get($data, 'title', config('app_title')) }}</title>
+@endsection
 
 @section('style')
+	<style type="text/css">
+
+	</style>
 @endsection
 
 @section('content')
-
-	<!-- Highlights -->
-	<section class="wrapper">
+	<!-- One -->
+	<section id="one" class="wrapper">
 		<div class="inner">
-			<div id="countryList">
-
+			<div class="flex flex-3">
+				<article>
+					<header>
+						<h3>Magna tempus sed amet<br /> aliquam veroeros</h3>
+					</header>
+					<p>Morbi interdum mollis sapien. Sed ac risus. Phasellus lacinia, magna a ullamcorper laoreet, lectus arcu.</p>
+					<footer>
+						<a href="#" class="button special">More</a>
+					</footer>
+				</article>
+				<article>
+					<header>
+						<h3>Interdum lorem pulvinar<br /> adipiscing vitae</h3>
+					</header>
+					<p>Morbi interdum mollis sapien. Sed ac risus. Phasellus lacinia, magna a ullamcorper laoreet, lectus arcu.</p>
+					<footer>
+						<a href="#" class="button special">More</a>
+					</footer>
+				</article>
+				<article>
+					<header>
+						<h3>Libero purus magna sapien<br /> sed ullamcorper</h3>
+					</header>
+					<p>Morbi interdum mollis sapien. Sed ac risus. Phasellus lacinia, magna a ullamcorper laoreet, lectus arcu.</p>
+					<footer>
+						<a href="#" class="button special">More</a>
+					</footer>
+				</article>
 			</div>
-			<br>
-			<header class="special">
-				<h2>Sem turpis amet semper</h2>
-				<p>In arcu accumsan arcu adipiscing accumsan orci ac. Felis id enim aliquet. Accumsan ac integer lobortis commodo ornare aliquet accumsan erat tempus amet porttitor.</p>
+		</div>
+	</section>
+
+	<!-- Two -->
+	<section id="two" class="wrapper style1 special">
+		<div class="inner">
+			<header>
+				<h2>Ipsum Feugiat</h2>
+				<p>Semper suscipit posuere apede</p>
 			</header>
-			<div class="highlights">
-				<section>
-					<div class="content">
-						<header>
-							<a href="#" class="icon fa-vcard-o"><span class="label">Icon</span></a>
-							<h3>Feugiat consequat</h3>
-						</header>
-						<p>Nunc lacinia ante nunc ac lobortis ipsum. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus.</p>
+			<div class="flex flex-4">
+				<div class="box person">
+					<div class="image round">
+						<img src="images/pic03.jpg" alt="Person 1" />
 					</div>
-				</section>
-				<section>
-					<div class="content">
-						<header>
-							<a href="#" class="icon fa-files-o"><span class="label">Icon</span></a>
-							<h3>Ante sem integer</h3>
-						</header>
-						<p>Nunc lacinia ante nunc ac lobortis ipsum. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus.</p>
+					<h3>Magna</h3>
+					<p>Cipdum dolor</p>
+				</div>
+				<div class="box person">
+					<div class="image round">
+						<img src="images/pic04.jpg" alt="Person 2" />
 					</div>
-				</section>
-				<section>
-					<div class="content">
-						<header>
-							<a href="#" class="icon fa-floppy-o"><span class="label">Icon</span></a>
-							<h3>Ipsum consequat</h3>
-						</header>
-						<p>Nunc lacinia ante nunc ac lobortis ipsum. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus.</p>
+					<h3>Ipsum</h3>
+					<p>Vestibulum comm</p>
+				</div>
+				<div class="box person">
+					<div class="image round">
+						<img src="images/pic05.jpg" alt="Person 3" />
 					</div>
-				</section>
-				<section>
-					<div class="content">
-						<header>
-							<a href="#" class="icon fa-line-chart"><span class="label">Icon</span></a>
-							<h3>Interdum gravida</h3>
-						</header>
-						<p>Nunc lacinia ante nunc ac lobortis ipsum. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus.</p>
+					<h3>Tempus</h3>
+					<p>Fusce pellentes</p>
+				</div>
+				<div class="box person">
+					<div class="image round">
+						<img src="images/pic06.jpg" alt="Person 4" />
 					</div>
-				</section>
-				<section>
-					<div class="content">
-						<header>
-							<a href="#" class="icon fa-paper-plane-o"><span class="label">Icon</span></a>
-							<h3>Faucibus consequat</h3>
-						</header>
-						<p>Nunc lacinia ante nunc ac lobortis ipsum. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus.</p>
-					</div>
-				</section>
-				<section>
-					<div class="content">
-						<header>
-							<a href="#" class="icon fa-qrcode"><span class="label">Icon</span></a>
-							<h3>Accumsan viverra</h3>
-						</header>
-						<p>Nunc lacinia ante nunc ac lobortis ipsum. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus.</p>
-					</div>
-				</section>
+					<h3>Dolore</h3>
+					<p>Praesent placer</p>
+				</div>
 			</div>
 		</div>
 	</section>
 
-	<!-- CTA -->
-	<section id="cta" class="wrapper">
+	<!-- Three -->
+	<section id="three" class="wrapper special">
 		<div class="inner">
-			<h2>Curabitur ullamcorper ultricies</h2>
-			<p>Nunc lacinia ante nunc ac lobortis. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus ornare mi ut ante amet placerat aliquet. Volutpat eu sed ante lacinia sapien lorem accumsan varius montes viverra nibh in adipiscing. Lorem ipsum dolor vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing sed feugiat eu faucibus. Integer ac sed amet praesent. Nunc lacinia ante nunc ac gravida.</p>
-		</div>
-	</section>
-
-	<!-- Testimonials -->
-	<section class="wrapper">
-		<div class="inner">
-			<header class="special">
-				<h2>Faucibus consequat lorem</h2>
-				<p>In arcu accumsan arcu adipiscing accumsan orci ac. Felis id enim aliquet. Accumsan ac integer lobortis commodo ornare aliquet accumsan erat tempus amet porttitor.</p>
+			<header class="align-center">
+				<h2>Nunc Dignissim</h2>
+				<p>Aliquam erat volutpat nam dui </p>
 			</header>
-			<div class="testimonials">
-				<section>
-					<div class="content">
-						<blockquote>
-							<p>Nunc lacinia ante nunc ac lobortis ipsum. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus.</p>
-						</blockquote>
-						<div class="author">
-							<div class="image">
-								<img src="images/pic01.jpg" alt="" />
-							</div>
-							<p class="credit">- <strong>Jane Doe</strong> <span>CEO - ABC Inc.</span></p>
-						</div>
+			<div class="flex flex-2">
+				<article>
+					<div class="image fit">
+						<img src="images/pic01.jpg" alt="Pic 01" />
 					</div>
-				</section>
-				<section>
-					<div class="content">
-						<blockquote>
-							<p>Nunc lacinia ante nunc ac lobortis ipsum. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus.</p>
-						</blockquote>
-						<div class="author">
-							<div class="image">
-								<img src="images/pic03.jpg" alt="" />
-							</div>
-							<p class="credit">- <strong>John Doe</strong> <span>CEO - ABC Inc.</span></p>
-						</div>
+					<header>
+						<h3>Praesent placerat magna</h3>
+					</header>
+					<p>Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor lorem ipsum.</p>
+					<footer>
+						<a href="#" class="button special">More</a>
+					</footer>
+				</article>
+				<article>
+					<div class="image fit">
+						<img src="images/pic02.jpg" alt="Pic 02" />
 					</div>
-				</section>
-				<section>
-					<div class="content">
-						<blockquote>
-							<p>Nunc lacinia ante nunc ac lobortis ipsum. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus.</p>
-						</blockquote>
-						<div class="author">
-							<div class="image">
-								<img src="images/pic02.jpg" alt="" />
-							</div>
-							<p class="credit">- <strong>Janet Smith</strong> <span>CEO - ABC Inc.</span></p>
-						</div>
-					</div>
-				</section>
+					<header>
+						<h3>Fusce pellentesque tempus</h3>
+					</header>
+					<p>Sed adipiscing ornare risus. Morbi est est, blandit sit amet, sagittis vel, euismod vel, velit. Pellentesque egestas sem. Suspendisse commodo ullamcorper magna non comodo sodales tempus.</p>
+					<footer>
+						<a href="#" class="button special">More</a>
+					</footer>
+				</article>
 			</div>
 		</div>
 	</section>
+@endsection
 
+@section('inline-js')
+	<script>
+
+	</script>
 @endsection
