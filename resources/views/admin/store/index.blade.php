@@ -3,11 +3,6 @@
 
 @section('style')
     <style>
-        #create_record {
-            float: right;
-            /*clear: both;*/
-            margin-top: -25px;
-        }
     </style>
 @endsection
 
@@ -36,7 +31,7 @@
                         <button type="button" name="create_record" id="create_record" class="btn btn-success btn-sm">Create Record</button>
                         <br />
                         <div class="table-responsive m-t-20 waitme">
-                            <table id="user_table" class="table table-bordered m-b-20 " data-url="{{route('admin.store.index')}}">
+                            <table id="data_table" class="table table-bordered m-b-20">
 
                             </table>
                         </div>
@@ -56,7 +51,7 @@
             {{--<h3 align="center">Laravel 5.8 Ajax Crud Tutorial - Delete or Remove Data</h3>--}}
             {{--<br />--}}
             {{--<div class="table-responsive">--}}
-                {{--<table class="table table-bordered table-striped" id="user_table">--}}
+                {{--<table class="table table-bordered table-striped" id="data_table">--}}
                     {{--<thead>--}}
                     {{--<tr>--}}
                         {{--<th width="10%">Image</th>--}}
@@ -165,7 +160,7 @@
 <script>
     $(document).ready(function () {
 
-        data_table = $('#user_table');
+        data_table = $('#data_table');
         let table = data_table.dataTable({
             processing: true,
             serverSide: true,
@@ -329,7 +324,7 @@
                 {
                     setTimeout(function(){
                         $('#confirmModal').modal('hide');
-                        $('#user_table').DataTable().ajax.reload();
+                        $('#data_table').DataTable().ajax.reload();
                     }, 2000);
                 }
             })

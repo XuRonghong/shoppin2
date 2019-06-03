@@ -1,6 +1,11 @@
 
 @extends('admin.layouts.master')
 
+@section('style')
+    <style>
+    </style>
+@endsection
+
 @section('content')
     <div class="page-wrapper">
         <!-- ============================================================== -->
@@ -21,14 +26,12 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title">Crypto Market</h4>
-                            <h5 class="card-subtitle">Overview of Top Selling Items</h5>
-                            <div align="right">
-                                <button type="button" name="create_record" id="create_record" class="btn btn-success btn-sm">Create Record</button>
-                            </div>
+                            <h4 class="card-title modalTitle">{{data_get($data,'Title')}}</h4>
+                            {{--<h6 class="card-subtitle">{{data_get($data,'Summary')}}</h6>--}}
+                            <button type="button" name="create_record" id="create_record" class="btn btn-success btn-sm">Create Record</button>
                             <br />
                             <div class="table-responsive">
-                                <table id="dt_basic" class="table table-table-striped table-bordered" data-url="{{route('admin.news.list')}}">
+                                <table id="data_table" class="table table-table-striped table-bordered">
 
                                 </table>
                             </div>
@@ -44,7 +47,6 @@
 @endsection
 
 
-
 @section('inline-js')
     <!--  -->
     <!-- Public Crop_Image -->
@@ -54,68 +56,62 @@
     {{--@include('_web._js.summernote')--}}
     <!-- end -->
     <script>
-        // var current_data = [];
-        {{--var ajax_source = "{{ url('web/'.implode( '/', $module ).'/getlist')}}";--}}
-        {{--var ajax_Table = "{{ url('web/'.implode( '/', $module ).'/getlist')}}";--}}
-        {{--var url_dosave_show = "{{ url('web/'.implode( '/', $module ).'/dosaveshow')}}";--}}
-        {{--var url_add = "{{ url('news/create')}}";--}}
-        {{--var url_doadd = "{{ url('news/store')}}";--}}
-        var url_ = "{{ url('admin.news')}}";
-        {{--var url_dosave = "{{ url('news')}}";--}}
-        {{--var url_dodel = "{{ url('web/'.implode( '/', $module ).'/dodel')}}";--}}
-        {{--var url_attr = "{{ url('web/'.implode( '/', $module ).'/attr')}}";--}}
-        {{--var url_sub = "{{ url('web/'.implode( '/', $module ).'/sub')}}";--}}
-
         $(document).ready(function () {
-            /* BASIC ;*/
+
             // loading .....
             run_waitMe($('.waitme'));
-            var i = 0;
-            let data_table = $('#dt_basic');
-            var table = data_table.dataTable({
+            let data_table = $('#data_table');
+            let table = data_table.dataTable({
                 "serverSide": true,
                 "stateSave": true,
-                "scrollX": true,
-                "scrollY": '60vh',
+                // "scrollX": true,
+                // "scrollY": '60vh',
                 // 'bProcessing': true,
                 'sServerMethod': 'GET',
                 "aoColumns": [
                     {
                         "sTitle": "ID",
                         "mData": "id",
-                        "width": "40px",
                         "sName": "id",
+                        // "width": "40px",
                         "bSearchable": false,
                         "mRender": function (data, type, row) {
                             return data;
                         }
                     },
-                    {"sTitle": "標頭", "mData": "title", "width": "300px", "sName": "title"},
-                    {"sTitle": "content", "mData": "detail", "width": "300px", "sName": "detail"},
+                    {
+                        "sTitle": "標頭",
+                        "mData": "title",
+                        // "width": "100px",
+                        "sName": "title"
+                    },
+                    {
+                        "sTitle": "content",
+                        "mData": "summary",
+                        // "width": "100px",
+                        "sName": "summary"
+                    },
                     {
                         "sTitle": "",
                         "bSortable": false,
                         "bSearchable": false,
-                        "width": '140px',
+                        // "width": '100px',
                         "mRender": function (data, type, row) {
                             // current_data[row.id] = row;
-                            var btn = "無功能";
-                                btn = '<button class="btn btn-xs btn-default btn-attributes" title="全部資訊"><i class="fa fa-book" aria-hidden="true"></i></button>';
-                                <?php if (session("member.iAcType")<10){ ?>
-                                    btn += '<button class="btn btn-xs btn-default btn-edit" title="修改"><i class="fa fa-pencil" aria-hidden="true">修改</i></button>';
+                            let btn = '<button class="btn btn-xs btn-default btn-show" title="全部資訊"><i class="fa fa-book" aria-hidden="true"></i></button>';
+                                btn += '<button class="btn btn-xs btn-default btn-edit" title="修改"><i class="fa fa-pencil" aria-hidden="true">修改</i></button>';
                                 btn += '<button class="pull-right btn btn-xs btn-danger btn-del" title="刪除"><i class="fa fa-trash" aria-hidden="true"></i></button>';
-                                <?php } ?>
                             $('.waitme').waitMe('hide');
                             return btn;
                         }
                     },
                 ],
-                "sAjaxSource": data_table.data('url'),
-                "ajax": data_table.data('url'),
+                "sAjaxSource": '{{$route_url['list']}}',
+                "ajax": '{{$route_url['list']}}',
                 // "sDom": "<'dt-toolbar'<'col-xs-12 col-sm-6'f><'col-sm-6 col-xs-12 hidden-xs'l>r>" +
                 //     "t" +
                 //     "<'dt-toolbar-footer'<'col-sm-6 col-xs-12 hidden-xs'i><'col-xs-12 col-sm-6'p>>",
-                "autoWidth": true,
+                // "autoWidth": true,
                 "oLanguage": {
                     "sSearch": 'Search:<span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>'
                 },
@@ -131,21 +127,24 @@
             setTimeout(function(){ $('.waitme').waitMe('hide') }, 10000);   //逾時10秒關閉讀取
             /* END BASIC */
 
+            document.getElementById('create_record').addEventListener('click', function () {
+                location.href = '{{$route_url['create']}}'
+            })
 
             //
-            $("#dt_basic").on('click', '.btn-edit', function () {
+            data_table.on('click', '.btn-edit', function () {
                 //var id = $(this).closest('tr').attr('id');
-                var id = $(this).closest('tr').find('td').first().text();
-                location.href = url_ + '/' + id + '/edit';
+                let id = $(this).closest('tr').find('td').first().text();
+                location.href = '{{$route_url['edit']}}'+ id+ '/edit';
             });
+
             //
-            $("#dt_basic").on('click', '.btn-del', function () {
+            data_table.on('click', '.btn-del', function () {
                 //var id = $(this).closest('tr').attr('id');
-                var id = $(this).closest('tr').find('td').first().text();
-                var data = {
+                let id = $(this).closest('tr').find('td').first().text();
+                let data = {
                     "_token": "{{ csrf_token() }}"
                 };
-                data.id = id;
                 swal({
                     title: "{{trans('_web_alert.del.title')}}",
                     text: "{{trans('_web_alert.del.note')}}",
@@ -157,9 +156,9 @@
                     closeOnConfirm: true
                 }, function () {
                     $.ajax({
-                        url: url_dodel,
+                        url: '{{$route_url['destroy']}}'+ id,
                         data: data,
-                        type: "DELETE",
+                        type: "POST",
                         //async: false,
                         success: function (rtndata) {
                             if (rtndata.status) {
@@ -178,21 +177,23 @@
                     });
                 });
             });
+
             //
-            $("#dt_basic").on('click', '.btn-attributes', function () {
+            data_table.on('click', '.btn-show', function () {
                 //var id = $(this).closest('tr').attr('id');
                 var id = $(this).closest('tr').find('td').first().text();
-                location.href = url_attr + '/' + id;
+                location.href = '{{$route_url['show']}}'+ id;
             });
+
             //
-            var ii = 1;
-            $('thead>tr>th').each(function () {
-                if (ii==4){
-                    $(this).click();
-                    $(this).click();
-                }
-                ii++;
-            });
+            // var ii = 1;
+            // $('thead>tr>th').each(function () {
+            //     if (ii==4){
+            //         $(this).click();
+            //         $(this).click();
+            //     }
+            //     ii++;
+            // });
         });
     </script>
 @endsection

@@ -22,9 +22,20 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 
+
+        <link rel="stylesheet" href="{{asset('/css/toastr.min.css')}}">
+        <link rel="stylesheet" href="{{asset('/css/sweetalert.css')}}">
+        <!-- Loading -->
+        <link rel="stylesheet" href="{{asset('css/waitMe.css')}}" type="text/css">
+
+
         <!-- Master styles -->
         <style type="text/css">
-
+            #create_record {
+                float: right;
+                /*clear: both;*/
+                margin-top: -25px;
+            }
         </style>
 
         <!-- Styles -->
@@ -54,10 +65,6 @@
         <!-- ============================================================== -->
 
         @include('admin.layouts.footer')
-
-        <script src="{{asset('/js/toastr.min.js')}}"></script>
-        <script src="{{asset('/js/sweetalert.min.js')}}"></script>
-
         <!-- Scripts -->
         <!-- ============================================================== -->
         <!-- All Jquery -->
@@ -83,6 +90,10 @@
         <!--This page plugins -->
         <script src="{{asset('xtreme-admin/assets/extra-libs/DataTables/datatables.min.js')}}"></script>
         <script src="{{asset('xtreme-admin/dist/js/pages/datatable/datatable-basic.init.js')}}"></script>
+
+
+        <script src="{{asset('js/toastr.min.js')}}"></script>
+        <script src="{{asset('js/sweetalert.min.js')}}"></script>
 
 
         <script src="{{asset('js/waitMe.js')}}"></script>

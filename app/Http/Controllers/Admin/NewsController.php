@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\News;
+use Validator;
 
 class NewsController extends Controller
 {
@@ -16,9 +17,24 @@ class NewsController extends Controller
     public function index()
     {
         //
+        $data = [
+            'Title' => 'News create',
+            'Summary' => '',
+        ];
+
+        //
         $news = News::all();
 
-        return view('admin.news.index', compact($news));
+        $route_url = [
+            'index' => route('admin.news.index'),
+            'list' => route('admin.news.list'),
+            'create' => route('admin.news.create'),
+            'edit'  => route('admin.news.index').'/',
+            'destroy' => url('admin/news/destroy').'/',
+            'show' => route('admin.news.index').'/',
+        ];
+
+        return view('admin.news.index', compact('data','news', 'route_url'));
     }
 
 
@@ -94,7 +110,12 @@ class NewsController extends Controller
     public function create()
     {
         //
-        return view('admin.news.create');
+        $data = [
+            'Title' => 'News create',
+            'Summary' => '',
+        ];
+        $news = [];
+        return view('admin.news.create', compact('data', 'news'));
     }
 
     /**
@@ -108,7 +129,7 @@ class NewsController extends Controller
         //
         $rules = [
             'title' => 'required',
-            'detail' => 'required',
+            'summary' => 'required',
 //            'hashtag_name' => 'required|array',
             'startTime' => 'nullable',
             'endTime' => 'nullable',
@@ -117,7 +138,7 @@ class NewsController extends Controller
 
         $messages = [
             'title.required' => '標題為必填項目',
-            'detail.required' => '內文為必填項目',
+            'summary.required' => '內文為必填項目',
 //            'category_id.required' => '商品分類為必填項目',
 //            'hashtag_name.required' => '標籤為必填項目',
         ];
@@ -127,7 +148,7 @@ class NewsController extends Controller
         try{
             $news = new News([
                 'title' => $request->get('title'),
-                'detail' => $request->get('detail'),
+                'summary' => $request->get('summary'),
 //                'authorId' => 0,
 //                'startTime' => 0,
 //                'endTime' => 0
@@ -143,7 +164,7 @@ class NewsController extends Controller
         return response()->json([
             'status'=> 1,
             'message'=>sprintf("已新增 %s", "一筆資料"),
-            'redirectUrl'=> route('news.create')
+            'redirectUrl'=> route('admin.news.index')
         ],200);
 //        return redirect(route('admin.articles.index', $request->query()))
 //            ->with('success', sprintf("已新增 %s", "一筆資料"));
@@ -157,7 +178,14 @@ class NewsController extends Controller
      */
     public function show($id)
     {
+        $data = [
+            'Title' => 'News create',
+            'Summary' => '',
+            'Disable'   => true
+        ];
         //
+        $news = News::findOrFail($id);
+        return view('admin.news.create', compact('data','news'));
     }
 
     /**
@@ -168,7 +196,13 @@ class NewsController extends Controller
      */
     public function edit($id)
     {
+        $data = [
+            'Title' => 'News create',
+            'Summary' => '',
+        ];
         //
+        $news = News::findOrFail($id);
+        return view('admin.news.create', compact('data','news'));
     }
 
     /**
@@ -181,6 +215,38 @@ class NewsController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $rules = [
+            'title' => 'required',
+            'summary' => 'required',
+//            'hashtag_name' => 'required|array',
+            'startTime' => 'nullable',
+            'endTime' => 'nullable',
+            'open' => 'nullable'
+        ];
+
+        $messages = [
+            'title.required' => '標題為必填項目',
+            'summary.required' => '內文為必填項目',
+//            'category_id.required' => '商品分類為必填項目',
+//            'hashtag_name.required' => '標籤為必填項目',
+        ];
+
+        $data = $request->validate($rules, $messages);
+
+        try{
+            $news = News::findOrFail($id)->update($data);
+        }catch (\Exception $e){
+            return response()->json([
+                'status'=> 0,
+                'message'=> $e->getMessage()
+            ],422);
+        }
+
+        return response()->json([
+            'status'=> 1,
+            'message'=>sprintf("已更新 %s", "一筆資料"),
+            'redirectUrl'=> route('admin.news.index')
+        ],200);
     }
 
     /**
@@ -192,5 +258,12 @@ class NewsController extends Controller
     public function destroy($id)
     {
         //
+        $data = News::findOrFail($id);
+        $data->delete();
+        return response()->json([
+            'status'=> 1,
+            'message'=>sprintf("已刪除 %s", "一筆資料"),
+            'redirectUrl'=> route('admin.news.index')
+        ],200);
     }
 }

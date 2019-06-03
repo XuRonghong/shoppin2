@@ -11,6 +11,7 @@
 |
 */
 
+
 //Route::get('/', 'HomeController@index')->middleware('auth:admin')->name('admin.home');
 
 //Auth::routes();
@@ -24,6 +25,21 @@ Route::group([
     ],function(){
 
     Route::get('/', 'HomeController@index')->name('admin');
+
+
+    /******* 最新消息 ********/
+    Route::get('news/list', 'NewsController@list')->name('news.list');
+    Route::resource('news', 'NewsController');
+    Route::post('news/update/{id}', 'NewsController@update')->name('news.update');
+    Route::post('news/destroy/{id}', 'NewsController@destroy');
+
+
+    /******* 商店店家 ********/
+    Route::get('store/list', 'StoreController@list')->name('store.list');
+    Route::resource('store', 'StoreController');
+    Route::post('store/update', 'StoreController@update')->name('store.update');
+    Route::post('store/destroy/{id}', 'StoreController@destroy');
+
 });
 // Registration Routes...
 //Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
@@ -37,8 +53,6 @@ Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 
 
 
-Route::get('news/list', 'NewsController@list')->name('news.list');
-Route::resource('news', 'NewsController');
 
 
 Route::resource('product', 'ProductController');
@@ -91,10 +105,6 @@ Route::post('/loadmore/load_data', 'ArticleController@load_data')->name('loadmor
 
 
 
-Route::get('store/list', 'StoreController@list')->name('store.list');
-Route::resource('store', 'StoreController');
-Route::post('store/update', 'StoreController@update')->name('store.update');
-Route::get('store/destroy/{id}', 'StoreController@destroy');
 
 
 
