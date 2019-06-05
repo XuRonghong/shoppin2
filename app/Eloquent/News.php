@@ -22,4 +22,12 @@ class News extends Model
         'endTime',
         'open'
     ];
+
+    /*
+     *
+     */
+    public function admin()
+    {
+        return $this->belongsTo(Admin::class);
+    }
 }

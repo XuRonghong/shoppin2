@@ -174,7 +174,7 @@
                 "sSearch": 'Search:<span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>'
             },
             ajax:{
-                url: "{{ $ajax_url['list'] }}",
+                url: "{{ $route_url['list'] }}",
             },
             columns:[
                 {
@@ -226,10 +226,10 @@
             let store_image = document.querySelector('#store_image').innerHTML;     //暫存就有圖片
 
             if(self.querySelector('#action').value === 'Add') {
-                url = "{{ $ajax_url['store'] }}";
+                url = "{{ $route_url['store'] }}";
             }
             if(self.querySelector('#action').value === 'Edit') {
-                url = "{{ $ajax_url['update'] }}";
+                url = "{{ $route_url['update'] }}";
             }
 
             $.ajax({
@@ -258,6 +258,19 @@
                         data_table.DataTable().ajax.reload();
                     }
                     document.querySelector('#form_result').innerHTML = html;
+                },
+                error: function (err) {
+                    console.log(err.responseJSON);
+                    if(err.errors) {
+                        html = '<div class="alert alert-danger">';
+                        for(let count = 0; count < data.errors.length; count++)
+                        {
+                            html += '<p>' + data.errors[count] + '</p>';
+                        }
+                        html += '</div>';
+                    }
+                    document.querySelector('#form_result').innerHTML = html;
+                    {{--toastr.error(JSON.stringify(err.responseJSON), "{{trans('_web_alert.notice')}}");--}}
                 }
             });
         });
@@ -267,7 +280,7 @@
             let id = $(this).attr('id');
             $('#form_result').html('');
             $.ajax({
-                url: "{{ $ajax_url['index'] }}"+ "/"+ id+ "/edit",
+                url: "{{ $route_url['index'] }}"+ "/"+ id+ "/edit",
                 dataType: "json",
                 success:function(html){
                     $('#name').val(html.data.name);
@@ -289,7 +302,7 @@
             let id = $(this).attr('id');
             $('#form_result').html('');
             $.ajax({
-                url: "{{ $ajax_url['show'] }}"+ id,
+                url: "{{ $route_url['show'] }}"+ id,
                 dataType: "json",
                 success:function(html){
                     $('#name').val(html.data.name).prop('disabled', true);
@@ -316,7 +329,7 @@
 
         $('#ok_button').click(function(){
             $.ajax({
-                url: "{{ $ajax_url['destroy'] }}"+ "/"+ primary_id,
+                url: "{{ $route_url['destroy'] }}"+ "/"+ primary_id,
                 beforeSend:function(){
                     $('#ok_button').text('Deleting...');
                 },

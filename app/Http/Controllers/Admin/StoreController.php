@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Services\backend\Admin\Stories\StoriesService;
 use App\Store;
 use Validator;
 
@@ -16,7 +17,7 @@ class StoreController extends Controller
      */
     public function index()
     {
-        $ajax_url = [
+        $route_url = [
             'index' => route('admin.store.index'),
             'list' => route('admin.store.list'),
             'create' => '',
@@ -26,7 +27,7 @@ class StoreController extends Controller
             'destroy' => url('admin.store.index'),
             'show' => route('admin.store.index').'/',
         ];
-        return view('admin.store.index', compact('ajax_url'));
+        return view('admin.store.index', compact('route_url'));
     }
 
 

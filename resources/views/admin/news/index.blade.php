@@ -30,7 +30,7 @@
                             {{--<h6 class="card-subtitle">{{data_get($data,'Summary')}}</h6>--}}
                             <button type="button" name="create_record" id="create_record" class="btn btn-success btn-sm">Create Record</button>
                             <br />
-                            <div class="table-responsive">
+                            <div class="table-responsive waitme">
                                 <table id="data_table" class="table table-table-striped table-bordered">
 
                                 </table>
@@ -63,11 +63,11 @@
             let data_table = $('#data_table');
             let table = data_table.dataTable({
                 "serverSide": true,
-                "stateSave": true,
+                // "stateSave": true,
                 // "scrollX": true,
                 // "scrollY": '60vh',
                 // 'bProcessing': true,
-                'sServerMethod': 'GET',
+                // 'sServerMethod': 'GET',
                 "aoColumns": [
                     {
                         "sTitle": "ID",
@@ -120,12 +120,14 @@
                 run_waitMe($('.waitme'));
                 setTimeout(function(){ $('.waitme').waitMe('hide') }, 1000);   //逾時1秒關閉讀取
             });
-            $('#dt_basic_length select').change(function () {
+            $('#data_table select').change(function () {
                 run_waitMe($('.waitme'));
                 setTimeout(function(){ $('.waitme').waitMe('hide') }, 1000);   //逾時1秒關閉讀取
             });
             setTimeout(function(){ $('.waitme').waitMe('hide') }, 10000);   //逾時10秒關閉讀取
             /* END BASIC */
+
+
 
             document.getElementById('create_record').addEventListener('click', function () {
                 location.href = '{{$route_url['create']}}'
