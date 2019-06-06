@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Services\backend\Admin\Stories\StoriesService;
+use App\Services\Admin\Stories\StoriesService;
 use App\Store;
 use Validator;
 
@@ -39,6 +39,9 @@ class StoreController extends Controller
             return datatables()->of(Store::latest()->get())
                 ->addColumn('action', function($data){
                     $button = '';
+//                    $button .= '<button class="btn btn-xs btn-default btn-show" title="全部資訊"><i class="fa fa-book" aria-hidden="true"></i></button>';
+//                    $button .= '<button class="btn btn-xs btn-default btn-edit" title="修改"><i class="fa fa-pencil" aria-hidden="true">修改</i></button>';
+//                    $button .= '<button class="pull-right btn btn-xs btn-danger btn-del" title="刪除"><i class="fa fa-trash" aria-hidden="true"></i></button>';
                     $button .= '<button type="button" name="edit" id="'.$data->id.'" class="edit btn btn-primary btn-sm">Edit</button>';
                     $button .= '&nbsp;&nbsp;';
                     $button .= '<button type="button" name="show" id="'.$data->id.'" class="show btn btn-default btn-sm">Show</button>';

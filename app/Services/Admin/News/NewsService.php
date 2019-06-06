@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Services\backend\Admin\News;
+namespace App\Services\Admin\News;
 
 use Illuminate\Http\Request;
-use App\Repositories\News\NewsRepository;
+use App\Repositories\Admin\News\NewsRepository;
 
 class NewsService
 {

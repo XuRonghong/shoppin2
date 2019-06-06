@@ -124,7 +124,7 @@
                 run_waitMe($('.waitme'));
                 setTimeout(function(){ $('.waitme').waitMe('hide') }, 1000);   //逾時1秒關閉讀取
             });
-            setTimeout(function(){ $('.waitme').waitMe('hide') }, 10000);   //逾時10秒關閉讀取
+            setTimeout(function(){ $('.waitme').waitMe('hide') }, 5000);   //逾時10秒關閉讀取
             /* END BASIC */
 
 

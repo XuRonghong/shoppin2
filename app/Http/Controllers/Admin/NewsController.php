@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Services\backend\Admin\News\NewsService;
-use App\Presenters\NewsPresenter;
+use App\Services\Admin\News\NewsService;
+use App\Presenters\Admin\NewsPresenter;
 
 class NewsController extends Controller
 {
@@ -28,7 +28,7 @@ class NewsController extends Controller
         //
         $news = $this->service->NewRepository()->all();
         //meta data
-        $data = $this->presenter->getParameters();
+        $data = $this->presenter->getParameters('index');
         //to ajax url
         $route_url = $this->presenter->getRouteResource('admin.news');
 

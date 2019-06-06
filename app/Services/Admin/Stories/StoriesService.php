@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\backend\Admin\Stories;
+namespace App\Services\Admin\Stories;
 
 use Illuminate\Http\Request;
 use App\Repositories\Stories\StoriesRepository;

@@ -1,7 +1,7 @@
 @extends('admin.layouts.master')
 
 @section('title')
-    <title>{{ data_get($data, 'title', config('app_title')) }}</title>
+    <title>{{ data_get($data, 'Title', config('app_title')) }}</title>
 @endsection
 
 @section('style')

@@ -2,19 +2,23 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Presenters\Admin\HomePresenter;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class HomeController extends Controller
 {
+    protected $presenter;
+
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(HomePresenter $presenter)
     {
 //        $this->middleware('auth');
+        $this->presenter = $presenter;
     }
 
     /**
@@ -24,7 +28,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $data = ['title'=>'helloworld'];
+        $data = $this->presenter->getParameters('index');
+
         return view('admin.home', compact('data'));
     }
 }

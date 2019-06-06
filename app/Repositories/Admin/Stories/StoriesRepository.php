@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Repositories\News;
+namespace App\Repositories\Admin\Stories;
 
 use Illuminate\Http\Request;
-use App\News;
-use App\Repositories\Repository;
+use App\Store;
+use App\Repositories\Admin\Repository;
 
-class NewsRepository extends Repository
+class StoriesRepository extends Repository
 {
     protected $model;
 
-    public function __construct(News $model)
+    public function __construct(Store $model)
     {
         $this->model = $model;
     }

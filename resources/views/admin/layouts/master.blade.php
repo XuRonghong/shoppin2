@@ -11,7 +11,6 @@
 
         <!-- Favicon icon -->
         <link href="{{asset('xtreme-admin/assets/images/favicon.png')}}" rel="icon" type="image/png" sizes="16x16" >
-        <title>Xtreme admin Template - The Ultimate Multipurpose admin template</title>
         <!-- This page plugin CSS -->
         <link href="{{asset('xtreme-admin/assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css')}}" rel="stylesheet">
         <!-- Custom CSS -->
