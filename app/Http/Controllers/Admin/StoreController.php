@@ -17,6 +17,8 @@ class StoreController extends Controller
      */
     public function index()
     {
+        $data = [
+        ];
         $route_url = [
             'index' => route('admin.store.index'),
             'list' => route('admin.store.list'),
@@ -27,7 +29,7 @@ class StoreController extends Controller
             'destroy' => url('admin.store.index'),
             'show' => route('admin.store.index').'/',
         ];
-        return view('admin.store.index', compact('route_url'));
+        return view('admin.store.index', compact('data', 'route_url'));
     }
 
 

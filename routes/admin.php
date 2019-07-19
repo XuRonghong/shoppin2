@@ -72,7 +72,7 @@ Route::post('/uploadfile', 'UploadfileController@upload');
 Route::post('/uploadfile/action', 'UploadfileController@AjaxUpload')->name('ajaxupload.action');
 
 
-
+// 選擇國家ajax跑出城市, 選城市ajax出區
 Route::get('/dynamic_dependent', 'AjaxController@dynamicDependent');
 Route::post('dynamic_dependent/fetch', 'AjaxController@dynamicDependentFetch')->name('dynamicdependent.fetch');
 Route::post('autocomplete/fetch', 'AjaxController@AutoCompleteFetch')->name('autocomplete.fetch');

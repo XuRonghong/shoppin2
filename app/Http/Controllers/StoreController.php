@@ -15,6 +15,7 @@ class StoreController extends Controller
      */
     public function index()
     {
+        $data = [];
         //
         if(request()->ajax())
         {
@@ -28,7 +29,7 @@ class StoreController extends Controller
                 ->rawColumns(['action'])
                 ->make(true);
         }
-        return view('store.index');
+        return view('store.index', compact('data'));
     }
 
     /**
